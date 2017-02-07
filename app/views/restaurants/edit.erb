@@ -1,0 +1,13 @@
+<div class="row">
+  <%= erb :"/partial/_errors" %>
+  <form class="col s12" action="/restaurants/<%= @restaurant.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="restaurant[name]" value="<%= @restaurant.name %>">
+    <input type="text" name="restaurant[cuisine]" value="<%= @restaurant.cuisine %>">
+    <input type="text" name="restaurant[street]" value="<%= @restaurant.street %>">
+    <input type="text" name="restaurant[city]" value="<%= @restaurant.city %>">
+    <input type="text" name="restaurant[state]" value="<%= @restaurant.state %>">
+    <input type="text" name="restaurant[zip]" value="<%= @restaurant.zip %>">
+    <input type="submit" name="" value="update">
+  </form>
+</div>

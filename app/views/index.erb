@@ -5,6 +5,14 @@
       <ul>
         <li><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></li>
         <li><%= restaurant.cuisine %></li>
+
+        <% if current_user && authorized?(restaurant.user_id) %>
+        <a href="/restaurants/<%= restaurant.id %>/edit"> edit </a>
+        <form class="" action="/restaurants/<%= restaurant.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" name="" value="delete">
+        </form>
+        <% end %>
       </ul>
     </div>
     <%end%>

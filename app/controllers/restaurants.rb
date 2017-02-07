@@ -17,3 +17,19 @@ get '/restaurants/:id' do
   @restaurant = Restaurant.find_by(id: params[:id])
   erb :'restaurants/show'
 end
+
+get '/restaurants/:id/edit' do
+  require_user
+  @restaurant = Restaurant.find_by(id: params[:id])
+  erb :'/restaurants/edit'
+end
+
+put '/restaurants/:id' do
+  @restaurant = Restaurant.find(params[:id]).update(params[:restaurant])
+  redirect '/'
+end
+
+delete '/restaurants/:id' do
+  @restaurant = Restaurant.find(params[:id]).delete
+  redirect '/'
+end
