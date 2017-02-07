@@ -22,15 +22,20 @@ end
 get '/restaurants/:id/edit' do
   require_user
   @restaurant = Restaurant.find_by(id: params[:id])
+  redirect "/" unless authorized?(@restaurant.user_id)
   erb :'/restaurants/edit'
 end
 
 put '/restaurants/:id' do
-  @restaurant = Restaurant.find(params[:id]).update(params[:restaurant])
+  @restaurant = Restaurant.find(params[:id])
+  redirect '/'unless authorized?(@restaurant.user_id)
+  @restaurant.update(params[:restaurant])
   redirect '/'
 end
 
 delete '/restaurants/:id' do
-  @restaurant = Restaurant.find(params[:id]).delete
+  @restaurant = Restaurant.find(params[:id])
+  redirect '/'unless authorized?(@restaurant.user_id)
+  @restaurant.delete
   redirect '/'
 end
