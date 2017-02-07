@@ -1,0 +1,12 @@
+<div class="row">
+  <%= erb :"/partial/_errors" %>
+  <form class="col s12" action="/restaurants" method="post">
+    <input type="text" name="restaurant[name]" placeholder="Sullivan Bistro" value="">
+    <input type="text" name="restaurant[cuisine]" value="" placeholder="Amercian Cuisine">
+    <input type="text" name="restaurant[street]" value="" placeholder="Sullivan St">
+    <input type="text" name="restaurant[city]" value="" placeholder="New York">
+    <input type="text" name="restaurant[state]" value="" placeholder="NY">
+    <input type="text" name="restaurant[zip]" value="" placeholder="11111">
+    <input type="submit" name="" value="Restaurant">
+  </form>
+</div>
