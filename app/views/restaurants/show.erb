@@ -1,11 +1,58 @@
 <br>
 <br>
 <br>
-<div  align='center' class="">
+<div  align='center' class="restaurant">
   <ul>
     <li><%= @restaurant.name %></li>
     <li><%= @restaurant.cuisine%></li>
     <li><%= @restaurant.street %>, <%= @restaurant.city %>, <%= @restaurant.state %></li>
     <li><%= @restaurant.zip %></li>
   </ul>
+</div>
+
+<div class="right">
+  <% if current_user %>
+    <h3>leave a review:</h3>
+    <form class="" action="/reviews" method="post">
+      <input type="hidden" name="restaurant_id" value="<%= @restaurant.id %>">
+      <textarea name="review[description]" rows="8" cols="80"></textarea>
+      <select name="review[rating]">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <input align='center' type="submit" name="" value="submit a review">
+    </form>
+  <%else%>
+    <h3>login to leave a review</h2>
+    <a href="/users/login">login</a>
+  <%end%>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div align="center" class="">
+  <%if @reviews%>
+    <h5>Average Rating:</h5>
+      <h5><%= @reviews.reduce(0) {|sum,review| sum+= review.rating.to_i }/@reviews.length%></h5>
+    <ul>
+      <h1>Reviews:</h1>
+      <% @reviews.each do |review| %>
+      <li><%= review.description%></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>

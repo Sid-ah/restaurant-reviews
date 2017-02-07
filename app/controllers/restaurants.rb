@@ -15,6 +15,7 @@ end
 
 get '/restaurants/:id' do
   @restaurant = Restaurant.find_by(id: params[:id])
+  @reviews = @restaurant.reviews
   erb :'restaurants/show'
 end
 
