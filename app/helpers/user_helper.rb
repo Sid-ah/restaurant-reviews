@@ -5,3 +5,7 @@ end
 def require_user
   redirect "/" unless current_user
 end
+
+def authorized?(thing)
+  current_user == thing.id
+end

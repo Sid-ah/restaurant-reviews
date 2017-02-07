@@ -1,0 +1,12 @@
+<div aligm='center' class="">
+  <% if @restaurants %>
+    <% @restaurants.each do |restaurant|%>
+    <div class="restaurant">
+      <ul>
+        <li><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></li>
+        <li><%= restaurant.cuisine %></li>
+      </ul>
+    </div>
+    <%end%>
+  <%end%>
+</div>

@@ -14,7 +14,6 @@ post '/restaurants' do
 end
 
 get '/restaurants/:id' do
-  require_user
   @restaurant = Restaurant.find_by(id: params[:id])
   erb :'restaurants/show'
 end
