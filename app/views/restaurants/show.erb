@@ -1,6 +1,4 @@
-<br>
-<br>
-<br>
+<%= erb :"/partial/_errors" %>
 <div  align='center' class="restaurant">
   <ul>
     <li><%= @restaurant.name %></li>
@@ -27,31 +25,28 @@
     </form>
   <%else%>
     <h3>login to leave a review</h2>
-    <a href="/users/login">login</a>
+      <div>
+        <form action="/reviews/login" method="post">
+          <input type="hidden" name="restaurant_id" value="<%= @restaurant.id %>">
+          <label for="email">Email</label>
+          <input type="email" name="user[email]" id="email">
+          <br>
+          <label for="password">Password</label>
+          <input type="password" name="user[password]" id="password">
+          <br>
+          <input type="submit" value="Login">
+        </form>
+      </div>
   <%end%>
 </div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div align="center" class="">
-  <%if @reviews%>
+<div class="ratings">
+  <%if @reviews !=[] %>
     <h5>Average Rating:</h5>
       <h5><%= @reviews.reduce(0) {|sum,review| sum+= review.rating.to_i }/@reviews.length%></h5>
     <ul>
       <h1>Reviews:</h1>
       <% @reviews.each do |review| %>
-      <li><%= review.description%></li>
+      <li>. <%= review.description%></li>
       <% end %>
     </ul>
   <% end %>
